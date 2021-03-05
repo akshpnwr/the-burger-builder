@@ -29,6 +29,13 @@ const buildControls = (props) => {
         Current price : <strong>{props.price.toFixed(2)}</strong>
       </p>
       {transformedControls}
+      <button
+        disabled={props.price === 4}
+        className={classes.OrderButton}
+        onClick={props.ordered}
+      >
+        ORDER NOW
+      </button>
     </div>
   );
 };
