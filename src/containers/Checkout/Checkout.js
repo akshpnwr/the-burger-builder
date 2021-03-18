@@ -10,6 +10,7 @@ class Checkout extends Component {
       cheese: 1,
     },
   };
+
   render() {
     return (
       <div>

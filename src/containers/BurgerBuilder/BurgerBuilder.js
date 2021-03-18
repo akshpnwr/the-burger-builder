@@ -63,38 +63,42 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
+    console.log(this.props);
+
+    this.props.history.push('/checkout');
+
     // alert('Purchase successfull !! 😋 ');
-    this.setState({
-      loading: true,
-    });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Akash',
-        address: {
-          street: 'tilwari road',
-          zipcode: 248197,
-          country: 'India',
-        },
-        email: 'test@test.com',
-      },
-      deliveryMethod: 'fastest',
-    };
-    axios
-      .post(`/orders.json`, order)
-      .then((res) => {
-        this.setState({
-          loading: false,
-          purchasing: false,
-        });
-      })
-      .catch((err) => {
-        this.setState({
-          loading: false,
-          purchasing: false,
-        });
-      });
+    // this.setState({
+    //   loading: true,
+    // });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'Akash',
+    //     address: {
+    //       street: 'tilwari road',
+    //       zipcode: 248197,
+    //       country: 'India',
+    //     },
+    //     email: 'test@test.com',
+    //   },
+    //   deliveryMethod: 'fastest',
+    // };
+    // axios
+    //   .post(`/orders.json`, order)
+    //   .then((res) => {
+    //     this.setState({
+    //       loading: false,
+    //       purchasing: false,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     this.setState({
+    //       loading: false,
+    //       purchasing: false,
+    //     });
+    //   });
   };
 
   componentDidMount() {
