@@ -1,7 +1,6 @@
 import React from 'react';
 import BuildControl from './BuildControl/BuildControl';
 import classes from './BuildControls.css';
-import { Link } from 'react-router-dom';
 
 const controls = [
   { label: 'Salad', type: 'salad' },
