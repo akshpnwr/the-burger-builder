@@ -41,7 +41,7 @@ class ContactData extends Component {
         value: '',
       },
       email: {
-        elementType: 'email',
+        elementType: 'input',
         elementConfig: {
           type: 'email',
           placeholder: 'Your e-mail',
