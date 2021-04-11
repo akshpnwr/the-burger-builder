@@ -98,8 +98,19 @@ class ContactData extends Component {
       });
   };
 
-  inputChangeHandler = (event) => {
-    console.log(event.target.placeholder);
+  inputChangeHandler = (event, inputIdentifier) => {
+    const updatedForm = { ...this.state.orderForm };
+
+    const updatedFormElement = { ...updatedForm[inputIdentifier] };
+
+    updatedFormElement.value = event.target.value;
+
+    updatedForm[inputIdentifier] = { ...updatedFormElement };
+
+    console.log(updatedFormElement);
+
+    this.setState({ orderForm: updatedForm });
+    // console.log(event.target.placeholder);
 
     // const ele = this.state.orderForm.find(
     //   (element) =>
@@ -108,15 +119,15 @@ class ContactData extends Component {
 
     // console.log(Object.keys(this.state.orderForm));
 
-    Object.keys(this.state.orderForm).forEach((key) => {
-      const orderForm = { ...this.state.orderForm };
-      if (orderForm[key].elementConfig.placeholder === event.target.placeholder)
-        orderForm[key].value = event.target.value;
+    // Object.keys(this.state.orderForm).forEach((key) => {
+    //   const orderForm = { ...this.state.orderForm };
+    //   if (orderForm[key].elementConfig.placeholder === event.target.placeholder)
+    //     orderForm[key].value = event.target.value;
 
-      this.setState({
-        orderForm: orderForm,
-      });
-    });
+    //   this.setState({
+    //     orderForm: orderForm,
+    //   });
+    // });
     // console.log(ele);
   };
 
@@ -137,7 +148,7 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
-            changed={this.inputChangeHandler}
+            changed={(event) => this.inputChangeHandler(event, formElement.id)}
           />
         ))}
         <Button type="Success" clicked={this.orderHandler}>
