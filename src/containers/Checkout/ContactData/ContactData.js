@@ -98,6 +98,28 @@ class ContactData extends Component {
       });
   };
 
+  inputChangeHandler = (event) => {
+    console.log(event.target.placeholder);
+
+    // const ele = this.state.orderForm.find(
+    //   (element) =>
+    //     element.elementConfig.placeholder === event.target.placeholder
+    // );
+
+    // console.log(Object.keys(this.state.orderForm));
+
+    Object.keys(this.state.orderForm).forEach((key) => {
+      const orderForm = { ...this.state.orderForm };
+      if (orderForm[key].elementConfig.placeholder === event.target.placeholder)
+        orderForm[key].value = event.target.value;
+
+      this.setState({
+        orderForm: orderForm,
+      });
+    });
+    // console.log(ele);
+  };
+
   render() {
     const formElementsArray = Object.keys(this.state.orderForm).map((key) => {
       return {
@@ -115,6 +137,7 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            changed={this.inputChangeHandler}
           />
         ))}
         <Button type="Success" clicked={this.orderHandler}>
