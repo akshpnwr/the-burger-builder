@@ -14,7 +14,6 @@ class Orders extends Component {
     axios
       .get('/orders.json')
       .then((res) => {
-        console.log(res.data);
         this.setState({
           loading: false,
           orders: Object.keys(res.data).map((key) => {
@@ -33,7 +32,6 @@ class Orders extends Component {
   }
 
   render() {
-    console.log(this.state.orders);
     let orders = this.state.orders.map((order, i) => (
       <Order
         key={order.id}
