@@ -83,9 +83,14 @@ class ContactData extends Component {
             { value: 'cheapest', displayValue: 'Cheapest' },
           ],
         },
+        validation: {
+          required: false,
+        },
         value: '',
+        valid: true,
       },
     },
+    formIsValid: false,
     loading: false,
   };
 
@@ -151,28 +156,14 @@ class ContactData extends Component {
 
     updatedForm[inputIdentifier] = { ...updatedFormElement };
 
-    console.log(updatedFormElement);
+    let formIsValid = true;
 
-    this.setState({ orderForm: updatedForm });
-    // console.log(event.target.placeholder);
+    Object.keys(updatedForm).forEach((inputIdentifier) => {
+      formIsValid = updatedForm[inputIdentifier].valid && formIsValid;
+    });
 
-    // const ele = this.state.orderForm.find(
-    //   (element) =>
-    //     element.elementConfig.placeholder === event.target.placeholder
-    // );
-
-    // console.log(Object.keys(this.state.orderForm));
-
-    // Object.keys(this.state.orderForm).forEach((key) => {
-    //   const orderForm = { ...this.state.orderForm };
-    //   if (orderForm[key].elementConfig.placeholder === event.target.placeholder)
-    //     orderForm[key].value = event.target.value;
-
-    //   this.setState({
-    //     orderForm: orderForm,
-    //   });
-    // });
-    // console.log(ele);
+    console.log(formIsValid);
+    this.setState({ orderForm: updatedForm, formIsValid: formIsValid });
   };
 
   render() {
@@ -202,7 +193,9 @@ class ContactData extends Component {
             />
           );
         })}
-        <Button type="Success">ORDER</Button>
+        <Button type="Success" disabled={!this.state.formIsValid}>
+          ORDER
+        </Button>
       </form>
     );
 
